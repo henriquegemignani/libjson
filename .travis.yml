@@ -1,0 +1,19 @@
+language: cpp
+
+compiler:
+  - gcc
+  - clang
+  
+cache: apt
+
+before_install:
+  - sudo apt-get update
+
+install:
+  - sudo apt-get install cmake
+
+script:
+  - mkdir build
+  - cd build
+  - cmake ..
+  - make
