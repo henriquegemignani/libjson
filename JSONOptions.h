@@ -35,7 +35,7 @@
  *  JSON_ISO_STRICT turns off all code that uses non-standard C++.  This removes all
  *  references to long long and long double as well as a few others
  */
-#define JSON_ISO_STRICT
+//#define JSON_ISO_STRICT
 
 
 /*
@@ -330,7 +330,7 @@
  *  Without this option, those types of requests are undefined.  It also exposes the as_array, as_node, and cast 
  *  functions
  */
-#define JSON_CASTABLE
+//#define JSON_CASTABLE
 
 
 /*
