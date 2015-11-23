@@ -191,6 +191,9 @@ public:
     JSONNode & operator[](const json_string & name_t) json_nothrow;
     const JSONNode & operator[](const json_string & name_t) const json_nothrow;
 
+	JSONNode & operator[](const json_char * name_t) json_nothrow;
+	const JSONNode & operator[](const json_char * name_t) const json_nothrow;
+
     #ifdef JSON_LIBRARY
 	   void push_back(JSONNode * node) json_nothrow;
     #else
@@ -527,7 +530,7 @@ public:
     static JSONNode * newJSONNode_Shallow(const JSONNode & orig) json_hot;
 
     #define DECLARE_CAST_OP(type) operator type()
-    //DECLARE_FOR_ALL_CAST_TYPES_CONST(DECLARE_CAST_OP)
+    DECLARE_FOR_ALL_CAST_TYPES_CONST(DECLARE_CAST_OP)
 JSON_PRIVATE
     static JSONNode * newJSONNode(const JSONNode & orig     JSON_MUTEX_COPY_DECL2) json_hot;
     static JSONNode * newJSONNode(internalJSONNode * internal_t) json_hot;
@@ -585,7 +588,7 @@ JSON_PRIVATE
     inline JSONNode::operator type() const json_nothrow {\
 	   return static_cast<type>(*internal);\
     }
-//IMPLEMENT_FOR_ALL_TYPES(CAST_OP)
+IMPLEMENT_FOR_ALL_TYPES(CAST_OP)
 
 
 inline JSONNode::JSONNode(char mytype) json_nothrow : internal(internalJSONNode::newInternal(mytype)){
@@ -705,6 +708,15 @@ inline const JSONNode & JSONNode::operator[](const json_string & name_t) const j
     JSON_CHECK_INTERNAL();
     return *(*(internal -> at(name_t)));
 }
+
+inline JSONNode & JSONNode::operator[](const json_char * name_t) json_nothrow {
+	return (*this)[json_string(name_t)];
+}
+
+inline const JSONNode & JSONNode::operator[](const json_char * name_t) const json_nothrow {
+	return (*this)[json_string(name_t)];
+}
+
 
 #ifdef JSON_LIBRARY
 inline void JSONNode::push_back(JSONNode * child) json_nothrow{
