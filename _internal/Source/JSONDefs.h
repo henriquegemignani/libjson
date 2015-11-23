@@ -64,12 +64,12 @@
 	   #error, You can not use unicode under ANSI Strict C++
     #endif
 #else
-    #ifdef __GNUC__
-	   #ifdef __STRICT_ANSI__
-		  #warning, Using -ansi GCC option, but JSON_ISO_STRICT not on, turning it on for you
-		  #define JSON_ISO_STRICT
-	   #endif
-    #endif
+//    #ifdef __GNUC__
+//	   #ifdef __STRICT_ANSI__
+//		  #warning, Using -ansi GCC option, but JSON_ISO_STRICT not on, turning it on for you
+//		  #define JSON_ISO_STRICT
+//	   #endif
+//    #endif
 #endif
 
 
