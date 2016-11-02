@@ -45,8 +45,11 @@ _internal/Source/libjson.cpp
 _internal/Source/NumberToString.h)
 
 add_library(libjson ${LIBJSON_SOURCE})
+if (ANDROID)
+    target_compile_options(libjson PUBLIC "-fexceptions")
+endif(ANDROID)
 target_include_directories(libjson PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}")
-set_target_properties (libjson PROPERTIES 
+set_target_properties (libjson PROPERTIES
     OUTPUT_NAME json
     FOLDER "Dependencies"
 )
